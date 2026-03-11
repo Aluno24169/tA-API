@@ -1,4 +1,6 @@
-﻿namespace API.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace API.Models
 {
 
     /// <summary>
@@ -10,6 +12,8 @@
         /// <summary>
         /// PK
         /// </summary>
+        /// 
+        [Key]
         public int Id { get; set; }
 
         /// <summary>
@@ -21,6 +25,31 @@
         /// Estado (situação) em que se encontra a compra
         /// </summary>
         public State State { get; set; }
+
+        /************************************
+         * Relacionamentos 1-N
+         ************************************/
+
+        /// <summary>
+        /// FK para a tabela dos clientes
+        /// </summary>
+
+        [ForeignKey(nameof(Buyer))]
+        public int BuyerFK { get; set; }
+
+        /// <summary>
+        /// cliente que efetuou uma compra
+        /// </summary>
+        public MyUser Buyer { get; set; }
+
+        /************************************
+         * Relacionamentos M-N
+         ************************************/
+
+        /// <summary>
+        /// Lista de fotografias associadas à compra
+        /// </summary>
+        public ICollection<Photography> ListOfPhotos { get; set; }
     }
 
 
