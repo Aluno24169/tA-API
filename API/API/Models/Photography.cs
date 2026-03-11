@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Bogus.DataSets;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Nest;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -19,26 +24,41 @@ namespace API.Models
         /// <summary>
         /// nome associado à fotografia
         /// </summary>
-        public string Title { get; set; }
+
+        [StringLength(50)]
+        [Display(Name = "Título")]
+        [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
+        public string Title { get; set; } = "";
 
         /// <summary>
         /// descrição (opcional) da fotografia
         /// </summary>
-        public string Description { get; set; }
+
+        [Display(Name = "Descrição")]
+        [StringLength(300)]
+        public string? Description { get; set; }
 
         /// <summary>
         /// nome do ficheiro que contém a fotografia
         /// </summary>
-        public string File { get; set; }
+
+        public string File { get; set; } = "";
 
         /// <summary>
         /// data em que a fotografia foi tirada
         /// </summary>
+
+        [Display(Name = "Data")]
+        [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Date { get; set; }
 
         /// <summary>
         /// Preço de venda fotografia
         /// </summary>
+
+        [Display(Name = "Preço")]
         public decimal Price { get; set; }
 
         /************************************
@@ -49,8 +69,12 @@ namespace API.Models
         /// FK para a categoria da fotografia
         /// </summary>
         [ForeignKey(nameof(Category))]
+        [Display(Name = "Categoria")]
         public int CategoryFK { get; set; }
-        public Category Category { get; set; }
+
+        [ValidateNever]
+        [Display(Name = "Categoria")]
+        public Category Category { get; set; } = null!;
 
         /************************************
          * Relacionamentos M-N
@@ -59,6 +83,6 @@ namespace API.Models
         /// <summary>
         /// Lista de compras das fotografias
         /// </summary>
-        public ICollection<Purchase> ListOfPurchases { get; set; }
+        public ICollection<Purchase> ListOfPurchases { get; set; } = [];
     }
 }
