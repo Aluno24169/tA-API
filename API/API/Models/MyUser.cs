@@ -1,4 +1,5 @@
-﻿namespace API.Models
+﻿using System.ComponentModel.DataAnnotations;
+namespace API.Models
 {
     
     /// <summary>
