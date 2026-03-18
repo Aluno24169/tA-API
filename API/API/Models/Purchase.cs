@@ -20,6 +20,11 @@ namespace API.Models
         /// <summary>
         /// Data da compra
         /// </summary>
+
+        [Display(Name = "Data")]
+        [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime Date { get; set; }
 
         /// <summary>
