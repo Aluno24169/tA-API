@@ -1,4 +1,5 @@
 using API.Data;
+using API.Data.Seed;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +20,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // Invocar o seed da BD
+    app.UseItToSeedSqlServer();
     app.UseMigrationsEndPoint();
 }
 else

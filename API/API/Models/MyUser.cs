@@ -20,7 +20,7 @@ namespace API.Models
         [StringLength(20)]
         [Display(Name = "Nome")]
         [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         /// <summary>
         /// Morada do Cliente
@@ -28,8 +28,7 @@ namespace API.Models
 
         [StringLength(60)]
         [Display(Name = "Endereço")]
-        [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         /// <summary>
         /// Código postal do cliente
@@ -37,8 +36,7 @@ namespace API.Models
 
         [StringLength(15)]
         [Display(Name = "Código Postal")]
-        [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
-        public string PostalCode { get; set; }
+        public string? PostalCode { get; set; }
 
         /// <summary>
         /// País da morada do cliente
@@ -46,8 +44,7 @@ namespace API.Models
 
         [StringLength(20)]
         [Display(Name = "País")]
-        [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         /// <summary>
         /// Número de contribuinte
@@ -56,7 +53,7 @@ namespace API.Models
         [StringLength(15)]
         [Display(Name = "Contribuinte")]
         [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
-        public string TaxNumber { get; set; }
+        public string TaxNumber { get; set; } = "";
 
         /// <summary>
         /// Número de telemovel do cliente
@@ -64,8 +61,7 @@ namespace API.Models
 
         [StringLength(9)]
         [Display(Name = "Telemóvel")]
-        [Required(ErrorMessage = "{0} é de preenchimento obrigátório")]
-        public string CellPhone { get; set; }
+        public string? CellPhone { get; set; }
 
         /************************************
          * Relacionamentos 1-N
@@ -74,7 +70,7 @@ namespace API.Models
         /// <summary>
         /// Lista das compras de fotografias efetuadas pelo cliente
         /// </summary>
-        public ICollection<Purchase> ListOfPurchase { get; set; }
+        public ICollection<Purchase> ListOfPurchase { get; set; } = [];
 
     }
 }

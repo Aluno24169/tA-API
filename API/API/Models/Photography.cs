@@ -35,7 +35,7 @@ namespace API.Models
         /// </summary>
 
         [Display(Name = "Descrição")]
-        [StringLength(300)]
+        [StringLength(500)]
         public string? Description { get; set; }
 
         /// <summary>
